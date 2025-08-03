@@ -20,6 +20,11 @@ return {
           ['\\'] = 'close_window',
         },
       },
+      filtered_items = {
+        hide_dotfiles = false, -- Set to true to hide dotfiles
+        hide_node_modules = true,
+        hide_gitignored = false,
+      },
     },
   },
 }
