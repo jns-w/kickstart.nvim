@@ -1,6 +1,8 @@
 -- INFO:
 -- flog displays git branches and commit flows
 
+vim.keymap.set('n', '<leader>fl', '<Cmd>Flogsplit<CR>')
+
 return {
 	"rbong/vim-flog",
 	lazy = true,
