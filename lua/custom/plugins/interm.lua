@@ -46,7 +46,7 @@ local toggle_terminal = function()
   if not vim.api.nvim_win_is_valid(state.floating.win) then
     state.floating = create_floating_window { buf = state.floating.buf }
     if vim.bo[state.floating.buf].buftype ~= 'terminal' then
-      vim.cmd.terminal()
+      vim.cmd.terminal 'fish'
       vim.cmd 'startinsert' -- start terminal on insert mode
     else
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>i', true, false, true), 'n', true) -- go into insert mode when toggling existing terminal buffer
