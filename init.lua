@@ -93,6 +93,19 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- Workaround for LSP servers returning paths without file:// scheme
+-- Fixes: "URI must contain a scheme" error when navigating to CSS modules
+local uri_mod = require('vim.uri')
+local orig_uri_to_fname = uri_mod.uri_to_fname
+local patched_uri_to_fname = function(uri)
+  if uri:sub(1, 1) == '/' then
+    return uri
+  end
+  return orig_uri_to_fname(uri)
+end
+uri_mod.uri_to_fname = patched_uri_to_fname
+vim.uri_to_fname = patched_uri_to_fname
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
